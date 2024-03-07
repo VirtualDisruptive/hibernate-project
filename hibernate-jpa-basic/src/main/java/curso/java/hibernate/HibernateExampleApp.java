@@ -67,7 +67,7 @@ public class HibernateExampleApp implements CommandLineRunner {
 
     scopeRepository.save(scope);
     Optional<Scope> emp = scopeRepository.findById(1L);
-    emp.ifPresent(employee -> logger.info("Employee id 1 -> {}", emp.get()));
+    emp.ifPresent(Scope -> logger.info("Scope id 1 -> {}", emp.get()));
 
     scopeRepository.findAll().forEach(System.out::println);
   }
