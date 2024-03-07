@@ -1,7 +1,9 @@
 package curso.java.hibernate;
 
 import curso.java.hibernate.data.EmployeeRepository;
+import curso.java.hibernate.data.ScopeRepository;
 import curso.java.hibernate.data.entity.Employee;
+import curso.java.hibernate.data.entity.Scope;
 import curso.java.hibernate.data.entity.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +26,11 @@ public class HibernateExampleApp implements CommandLineRunner {
   @Autowired
   EmployeeRepository repository;
 
+  @Autowired
+  ScopeRepository scopeRepository;
+
+
+
   public static void main(String[] args) {
     SpringApplication.run(HibernateExampleApp.class, args);
   }
@@ -31,6 +38,8 @@ public class HibernateExampleApp implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception
   {
+/*Descomentar para Crear un empleado y añadirle tareas*/
+/*
 
 
     Employee emp2 = new Employee();
@@ -42,9 +51,25 @@ public class HibernateExampleApp implements CommandLineRunner {
 
     repository.save(emp2);
     Optional<Employee> emp = repository.findById(2L);
-    emp.ifPresent(employee -> logger.info("Employee id 2 -> {}", emp.get()));
+    emp.ifPresent(employee -> logger.info("Employee id 4 -> {}", emp.get()));
 
     repository.findAll().forEach(System.out::println);
+
+ */
+
+    /*Crear un Scope y añadirle tareas, Acividad a Realizar*/
+
+    Scope scope = new Scope();
+    scope.setName("Tecnico");
+    scope.setDescription("Este ambito se trata del tema tecnico de las tareas");
+
+    scope.setTasks(getTasks());
+
+    scopeRepository.save(scope);
+    Optional<Scope> emp = scopeRepository.findById(1L);
+    emp.ifPresent(employee -> logger.info("Employee id 1 -> {}", emp.get()));
+
+    scopeRepository.findAll().forEach(System.out::println);
   }
 
   private Set<Task> getTasks() {

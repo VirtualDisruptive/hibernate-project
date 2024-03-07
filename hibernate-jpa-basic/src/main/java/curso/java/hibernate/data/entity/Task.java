@@ -19,6 +19,18 @@ public class Task implements Serializable {
     @Column
     private Integer employeeId;
 
+
+    @Column
+    private Integer id_scope;
+
+    public Integer getId_scope() {
+        return id_scope;
+    }
+
+    public void setId_scope(Integer id_scope) {
+        this.id_scope = id_scope;
+    }
+
     public Integer getEmployeeId() {
         return employeeId;
     }
